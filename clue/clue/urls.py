@@ -14,6 +14,8 @@ if settings.DEBUG:
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('', application.urls),
     path('__debug__/', include(debug_toolbar.urls)),
     # url(r'^search/', include('haystack.urls')),
 
