@@ -8,7 +8,13 @@ verify_ssl = true
 [packages]
 django = "*"
 django-debug-toolbar = "*"
-elasticsearch-dsl = "*"
+django-oscar = "*"
+django-widget-tweaks = "*"
+django-compressor = "*"
+pycountry = "*"
+psycopg2 = "*"
+elasticsearch5 = "*"
+django-haystack = "*"
 
 [requires]
 python_version = "3.7"
