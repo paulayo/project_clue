@@ -11,7 +11,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '+h_%zx3r(bc*xc3^e+iwmo3*9$d*8r23)=6v!1#4^#bnn-)30+'
 
@@ -27,7 +26,6 @@ ALLOWED_HOSTS = []
 from oscar import get_core_apps
 
 INSTALLED_APPS = [
-    'apps.search.apps.SearchConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -36,11 +34,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
-    'elasticsearch',
-    'django_toolbar',
+    'apps.my_products',
+    'elasticsearch5',
+    'debug_toolbar',
 	'compressor',
-	'widget_tweaks'
-    'haystack',
+	'widget_tweaks',
 
 ] + get_core_apps()
 
@@ -49,7 +47,7 @@ SITE_ID = 1
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.elasticsearch5_backend.Elasticsearch5SearchEngine',
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
         'URL': 'http://127.0.0.1:9200/',
         'INDEX_NAME': 'haystack',
     },
@@ -168,7 +166,7 @@ USE_TZ = True
 
 
 
-
+STATIC_ROOT = 'localhost/8000/'
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
