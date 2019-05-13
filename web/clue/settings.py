@@ -8,16 +8,17 @@ from oscar.defaults import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+h_%zx3r(bc*xc3^e+iwmo3*9$d*8r23)=6v!1#4^#bnn-)30+'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'NO').lower() in ('on', 'true', 'y', 'yes')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -34,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
-    'apps.my_products',
+    'clue.apps.my_products',
     'elasticsearch5',
     'debug_toolbar',
 	'compressor',
@@ -120,19 +121,17 @@ WSGI_APPLICATION = 'clue.wsgi.application'
 
 
 
-
-DATABASES = {  
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-        'NAME': 'clue_db',                      
-        'USER': 'postgres',                      
-        'PASSWORD': 'password123',                  
-        'HOST': '127.0.0.1',                     
-        'PORT': '5432',                    
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
+        'PASSWORD': os.environ['DB_PASS'],
+        'HOST': os.environ['DB_SERVICE'],
+        'PORT': os.environ['DB_PORT'],
         'ATOMIC_REQUESTS': True
     }
 }
-
 
 
 
@@ -166,7 +165,7 @@ USE_TZ = True
 
 
 
-STATIC_ROOT = 'localhost/8000/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'

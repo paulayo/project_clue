@@ -15,6 +15,7 @@ pycountry = "*"
 psycopg2 = "*"
 elasticsearch5 = "*"
 django-haystack = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
