@@ -1,7 +1,7 @@
 server {
 
     listen 80;
-    server_name cluemarket.org;
+    server_name cluemarket.com;
     charset utf-8;
 
     location /static {

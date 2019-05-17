@@ -16,7 +16,7 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 SECRET_KEY = os.environ['SECRET_KEY']
 
 
-DEBUG = os.getenv('DEBUG', 'NO').lower() in ('on', 'true', 'y', 'yes')
+DEBUG = os.getenv('DEBUG', 'YES').lower() in ('on', 'true', 'y', 'yes')
 
 ALLOWED_HOSTS = ['*']
 
@@ -48,9 +48,8 @@ SITE_ID = 1
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
         'URL': 'http://127.0.0.1:9200/',
-        'INDEX_NAME': 'haystack',
     },
 }
 
@@ -127,7 +126,7 @@ DATABASES = {
         'NAME': os.environ['DB_NAME'],
         'USER': os.environ['DB_USER'],
         'PASSWORD': os.environ['DB_PASS'],
-        'HOST': os.environ['DB_SERVICE'],
+        'HOST': 'localhost',
         'PORT': os.environ['DB_PORT'],
         'ATOMIC_REQUESTS': True
     }
