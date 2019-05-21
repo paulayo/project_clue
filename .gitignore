@@ -3,10 +3,9 @@
 .DS_Store
 .idea
 venv
-env
 __pycache__
 .venv
 .cache
 web/clue/v15
 web/clue/v16
-.env
+env
