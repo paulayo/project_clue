@@ -1,7 +1,7 @@
--i https://pypi.org/simple
-babel==2.6.0
+-i https://pypi.org/simple/
+babel==2.7.0
 django-appconf==1.0.3
-django-compressor==2.2
+django-compressor==2.3
 django-debug-toolbar==1.11
 django-extra-views==0.11.0
 django-haystack==2.8.1
@@ -13,11 +13,11 @@ django-widget-tweaks==1.4.3
 django==2.1.8
 elasticsearch5==5.5.5
 factory-boy==2.12.0
-faker==1.0.6
+faker==1.0.7
 gunicorn==19.9.0
 mock==2.0.0
-pbr==5.2.0
-phonenumbers==8.10.11
+pbr==5.2.1
+phonenumbers==8.10.12
 pillow==6.0.0
 psycopg2==2.8.2
 purl==1.5
@@ -25,10 +25,10 @@ pycountry==18.12.8
 python-dateutil==2.8.0
 pytz==2019.1
 rcssmin==1.0.6
-rjsmin==1.0.12
+rjsmin==1.1.0
 six==1.12.0
 sorl-thumbnail==12.4.1
 sqlparse==0.3.0
 text-unidecode==1.2
 unidecode==1.0.23
-urllib3==1.25.2
+urllib3==1.25.3
