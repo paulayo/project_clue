@@ -3,7 +3,7 @@ version: '3'
 services:
   web:
     restart: always
-    build: ./web
+    build: /web/
     expose:
       - "8000"
     links:
@@ -14,13 +14,14 @@ services:
     env_file: .env
     environment:
       DEBUG: 'true'
-    command:  bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000" && /usr/local/bin/gunicorn clue.wsgi:application -w 2 -b :8000
+    command:  bash -c  python manage.py runserver 0.0.0.0:8000
+
 
   nginx:
     restart: always
     build: ./nginx/
     ports:
-      - "80:80"
+      - "80:80" 
     volumes:
       - web-static:/www/static
     links:

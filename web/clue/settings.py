@@ -2,10 +2,9 @@ import os
 
 
 # third party module
-
+# breakpoint()
 
 from oscar.defaults import *
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
@@ -22,10 +21,10 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+from oscar.core.loading import get_class
 
 
 from oscar import get_core_apps
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -35,12 +34,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
-    'clue.apps.my_products',
+    # 'clue.apps.my_products', 
     'elasticsearch5',
     'debug_toolbar',
 	'compressor',
 	'widget_tweaks',
-
 ] + get_core_apps()
 
 SITE_ID = 1
@@ -133,8 +131,6 @@ DATABASES = {
 }
 
 
-
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -149,7 +145,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 
 LANGUAGE_CODE = 'en-us'
@@ -168,7 +163,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 OSCAR_INITIAL_ORDER_STATUS = 'Pending'
 OSCAR_INITIAL_LINE_STATUS = 'Pending'
@@ -177,3 +172,33 @@ OSCAR_ORDER_STATUS_PIPELINE = {
     'Being processed': ('Processed', 'Cancelled',),
     'Cancelled': (),
 }
+
+OSCAR_ORDER_STATUS_CASCADE = {
+    'Being processed': 'Being processed',
+    'Cancelled': 'Cancelled',
+    'Complete': 'Shipped',
+}
+
+OSCAR_SHOP_NAME = "Clue Market"
+
+OSCAR_SEND_REGISTRATION_EMAIL = False
+OSCAR_FROM_EMAIL = 'femi4dami@gmail.com'
+
+INTERNAL_IPS = '127.0.0.1'
+
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+]
+
+RENDER_PANELS = True
