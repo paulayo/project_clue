@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
 	'compressor',
 	'widget_tweaks',
-] + get_core_apps()
+] + get_core_apps(['catalogue'])
 
 SITE_ID = 1
 
