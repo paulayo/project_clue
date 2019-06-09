@@ -1,90 +1,96 @@
 
 from django.db import models
-from clue import settings
+
+
 from oscar.apps.catalogue.abstract_models import (AbstractProduct, AbstractProductClass,
                                                   AbstractCategory,AbstractProductRecommendation,
-                                                   AbstractProductAttributeValue, AbstractProductImage)
+                                                   AbstractProductAttribute, AbstractProductImage,
+                                                   AbstractOption)
+from oscar.core.loading import  get_classes
+
+from clue import settings
+
+
+ProductManager, BrowsableProductManager = get_classes(
+    'catalogue.managers', ['ProductManager', 'BrowsableProductManager'])
+import catalogue
 
 
 
-
-class TShirtProductClass(AbstractProductClass):
+class ShirtProductClass(AbstractProductClass):
 
     name = models.CharField(name='tshirt_type', max_length=128)
 
-    pass
-# class TShirtProduct(AbstractProduct):
+
+
+class ShirtAttribute(AbstractProductAttribute):
+
+    product_class = models.ForeignKey(
+        ShirtProductClass,
+        on_delete=models.CASCADE,
+        )
+
+    name = models.CharField('Name', max_length=128) 
+    type = models.CharField('text', max_length=20)
+    option_group = models.ForeignKey(
+        'AttributeOptionGroup',
+        on_delete=models.CASCADE,
+        )
+
+class ShirtCategory(AbstractCategory):
+    name = models.CharField('shirt', max_length=200)
+    description = models.TextField('shirt_desc')
     
-#     structure = models.CharField('standalone', max_length=10)
-#     slug = models.SlugField('t-shirts', max_length=255, unique=False)
-#     description = models.TextField('Description', blank=True)
-#     product_class = models.ForeignKey(TShirtProductClass, on_delete=models.PROTECT,
-#                                         null = True,
-#                                         blank = True,
-#                                         verbose_name = 'product type',
-#                                         related_name = 'products'
-#                                         )
-#     title = models.CharField('title', max_length=255, blank=True)   
-
-#     date_updated = models.DateTimeField('Date updated', 
-#                                         auto_now=True,
-#                                         db_index=True)
-#     # categories = models.ManyToManyField(TShirtCategory,
-#     #                                     through='TShirtCategory',
-#     #                                     verbose_name='T-Shirt Category')
-#     pass
 
 
-# class TShirtAttributeValue(AbstractProductAttributeValue):
-#     product = models.ForeignKey(
-#         'TShirtProduct',
-#         on_delete=models.CASCADE,
-#         related_name='attribute_values',
-#         verbose_name="Product"
-#     )
-#     value_text = models.TextField('Text', blank=True, null=True)
-#     value_integer = models.IntegerField('Integer', blank=True, null=True)
-#     value_boolean = models.NullBooleanField('Boolean', blank=True)
-#     value_float = models.FloatField('Float', blank=True, null=True)
-#     value_richtext = models.TextField('Richtext', blank=True, null=True)
-#     value_date = models.DateField('Date', blank=True, null=True)
-#     value_datetime = models.DateTimeField('DateTime', blank=True, null=True)
-#     value_file = models.FileField(
-#         upload_to=settings.OSCAR_IMAGE_FOLDER, max_length=255,
-#         blank=True, null=True)
-#     value_image = models.ImageField(
-#         upload_to='media/product_image/', max_length=255,
-#         blank=True, null=True)
-#     pass
+class ShirtRecommendation(AbstractProductRecommendation):
+    primary = models.ForeignKey(
+        'ShirtProduct',
+        on_delete=models.CASCADE,
+        related_name='primary_recommendations')
 
-# class TShirtCategory(AbstractCategory):
-#     name = models.CharField('Name', max_length=255, db_index=True)
-#     description = models.TextField('Description', blank=True)
-#     pass
+    recommendation = models.ForeignKey(
+        'ShirtProduct',
+        on_delete=models.CASCADE)
 
-# # class TShirtRecommendation(AbstractProductRecommendation):
-# #     pass
+
+class ShirtOption(AbstractOption):
+
+    pass
+
+class ShirtProduct(AbstractProduct):
+    
+    structure = models.CharField('standalone', max_length=10)
+    slug = models.SlugField('t-shirts', max_length=255, unique=False)
+    description = models.TextField('Description', blank=True)
+    product_class = models.ForeignKey(ShirtProductClass, 
+                                        on_delete=models.PROTECT,
+                                        null = True,
+                                        blank = True,
+                                        verbose_name = 'product type',
+                                        related_name = 'products'
+                                        )
+    title = models.CharField('title', max_length=255, blank=True)   
+
+    date_updated = models.DateTimeField('Date updated', 
+                                        auto_now=True,
+                                        db_index=True)
+    attributes = models.ManyToManyField(ShirtAttribute)
+    recommended_products = models.ManyToManyField( 
+        to="self",
+        symmetrical=False,
+        related_name=None,
+        )
+    categories = models.ManyToManyField(ShirtCategory)
+    product_options = models.ManyToManyField(ShirtOption, blank=True)
+
+    objects = ProductManager()
+    browsable = BrowsableProductManager()
 
 
 
 
-# class TshirtImage(AbstractProductImage):
-#     product = models.ForeignKey(TShirtProduct, on_delete=models.CASCADE,
-#                             related_name='tshirt_images',
-#                             verbose_name='tshirt_product')
-#     original = models.ImageField('original', upload_to='./media/product/product_image/',
-#                                 max_length=255)
-#     display_order = models.PositiveIntegerField('display order', default=1)
-#     caption = models.CharField('caption', max_length=200)
-
-#     def is_primary(self):
-#         """
-#         Return bool if image display order is 0
-#         """
-#         return self.display_order == 1
 
 
-# # class Product(AbstractProduct):
-# #     video_url = models.URLField()
 
 from oscar.apps.catalogue.models import *
