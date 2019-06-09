@@ -57,4 +57,4 @@ admin.site.register(ShirtOption, ShirtOptionAdmin)
 # admin.site.register(ShirtRecommendation, ShirtRecommendationAdmin)
 admin.site.register(ShirtCategory, ShirtCategoryAdmin)
 
-from oscar.apps.catalogue.admin import *
+# from oscar.apps.catalogue.admin import *
