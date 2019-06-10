@@ -12,7 +12,7 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 DEBUG = os.getenv('DEBUG', 'YES').lower() in ('on', 'true', 'y', 'yes')
@@ -121,11 +121,11 @@ WSGI_APPLICATION = 'clue.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ['DB_NAME'],
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ['DB_PASS'],
-        'HOST': 'localhost',
-        'PORT': os.environ['DB_PORT'],
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
         'ATOMIC_REQUESTS': True
     }
 }
@@ -147,8 +147,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = 'en-us'
-
+TIME_ZONE = 'Africa/Nigeria'
+LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -158,7 +158,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-
+FIXTURE_DIRS = ['/web/clue/apps/fixtures']
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 

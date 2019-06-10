@@ -50,11 +50,11 @@ class ShirtCategoryAdmin(TreeAdmin):
 class ShirtOptionAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(ShirtClass, ShirtClassAdmin)
-admin.site.register(ShirtAttribute, ShirtAttributeAdmin)
-admin.site.register(ShirtProduct, ShirtProductAdmin)
-admin.site.register(ShirtOption, ShirtOptionAdmin)
+# admin.site.register(ShirtClass, ShirtClassAdmin)
+# admin.site.register(ShirtAttribute, ShirtAttributeAdmin)
+# admin.site.register(ShirtProduct, ShirtProductAdmin)
+# admin.site.register(ShirtOption, ShirtOptionAdmin)
 # admin.site.register(ShirtRecommendation, ShirtRecommendationAdmin)
-admin.site.register(ShirtCategory, ShirtCategoryAdmin)
+# admin.site.register(ShirtCategory, ShirtCategoryAdmin)
 
-# from oscar.apps.catalogue.admin import *
+from oscar.apps.catalogue.admin import *
