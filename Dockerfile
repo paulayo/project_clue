@@ -8,10 +8,10 @@ ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
 # create root directory for our project in the container
-RUN mkdir /web
+RUN mkdir ./web
 
 # Set the working directory to /web
-WORKDIR /web
+WORKDIR ./web
 
 # Copy the current directory contents into the container at /web
 ADD . /web/
@@ -25,4 +25,4 @@ RUN pipenv install --dev \
 
 COPY . .
 
-CMD ["python","manage.py"]
+CMD ["python","manage.py runserver"]
