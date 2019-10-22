@@ -16,7 +16,7 @@ factory-boy==2.12.0
 faker==1.0.6
 gunicorn==19.9.0
 phonenumbers==8.10.11
-pillow==6.0.0
+pillow==6.2.0
 psycopg2==2.8.2
 purl==1.5
 pycountry==18.12.8
