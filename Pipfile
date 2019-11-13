@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django-debug-toolbar = "==1.11"
+django-debug-toolbar = "==2.1"
 django-widget-tweaks = "==1.4.5"
 pycountry = "==18.12.8"
 psycopg2 = "==2.8.2"
