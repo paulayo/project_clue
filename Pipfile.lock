@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "66a6c99a54c0e6a98ed6b6ff8fdabaf5b868f6108a09a489bf73b2a1ab2e3d19"
+            "sha256": "19cbf439b1af5a6372f1e3702e594702ecea942457d67315fbc86defac052c02"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -164,10 +164,10 @@
         },
         "pbr": {
             "hashes": [
-                "sha256:0ce920b865091450bbcd452b35cf6d6eb8a6d9ce13ad2210d6e77557f85cf32b",
-                "sha256:93d2dc6ee0c9af4dbc70bc1251d0e545a9910ca8863774761f92716dece400b6"
+                "sha256:07f558fece33b05caf857474a366dfcc00562bca13dd8b47b2b3e22d9f9bf55c",
+                "sha256:579170e23f8e0c2f24b0de612f71f648eccb79fb1322c814ae6b3c07b5ba23e8"
             ],
-            "version": "==5.2.1"
+            "version": "==5.4.5"
         },
         "phonenumbers": {
             "hashes": [
@@ -312,11 +312,11 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:a53063d8b9210a7bdec15e7b272776b9d42b2fd6816401a0d43006ad2f9902db",
-                "sha256:d363e3607d8de0c220d31950a8f38b18d5ba7c0830facd71a1c6b1036b7ce06c"
+                "sha256:91056c15fa70756691db97756772bb1eb9678fa585d9184f24534b100dc60f4a",
+                "sha256:e7983572181f5e1522d9c98453462384ee92a0be7fac5f1413a1e35c56cc0461"
             ],
             "index": "pypi",
-            "version": "==1.25.2"
+            "version": "==1.25.10"
         },
         "whitenoise": {
             "hashes": [
